@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="La Maison du Tatouage à Vertou : tatouage, piercing, fidélité, boutique et réservation Planity." />
+  <title>La Maison du Tatouage — V1</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <header class="topbar">
+    <div class="brand">La Maison du Tatouage</div>
+    <nav aria-label="Navigation principale" class="nav-links">
+      <button class="nav-btn" data-route="accueil">Accueil</button>
+      <button class="nav-btn" data-route="rdv">RDV</button>
+      <button class="nav-btn" data-route="salon">Salon</button>
+      <button class="nav-btn" data-route="tatouage">Tatouage</button>
+      <button class="nav-btn" data-route="piercing">Piercing</button>
+      <button class="nav-btn" data-route="fidelite">Fidélité</button>
+      <button class="nav-btn" data-route="boutique">Boutique</button>
+      <button class="nav-btn" data-route="compte">Compte</button>
+      <button class="nav-btn" data-route="admin">Admin</button>
+    </nav>
+    <div class="header-tools">
+      <select id="lang" aria-label="Langue">
+        <option value="fr">FR</option>
+        <option value="en">EN (beta)</option>
+      </select>
+      <button class="btn btn-small" id="open-planity">Prendre RDV</button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="view active" data-view="accueil">
+      <div class="hero">
+        <h1 id="hero-title">L’art du tatouage, signé à Vertou.</h1>
+        <p id="hero-sub">Une expérience premium : créativité, précision et hygiène dans un cadre artistique.</p>
+        <div class="cta-row">
+          <button class="btn" data-route="rdv">Prendre RDV</button>
+          <button class="btn btn-ghost" data-route="tatouage">Voir les artistes</button>
+          <button class="btn btn-ghost" data-route="boutique">Boutique</button>
+          <button class="btn btn-ghost" data-route="compte">Mon compte</button>
+        </div>
+      </div>
+      <div class="card-grid">
+        <article class="card clickable" data-route="tatouage"><h3>Tatouage</h3><p>Portfolio filtrable + accompagnement projet.</p></article>
+        <article class="card clickable" data-route="piercing"><h3>Piercing</h3><p>Matériaux premium et protocole strict.</p></article>
+        <article class="card clickable" data-route="salon"><h3>Le Salon</h3><p>Infos pratiques, valeurs et FAQ.</p></article>
+        <article class="card clickable" data-route="fidelite"><h3>Fidélité</h3><p>Mes tatouages, retouches, avantages.</p></article>
+      </div>
+    </section>
+
+    <section class="view" data-view="rdv">
+      <article class="card">
+        <h2>Prise de rendez-vous</h2>
+        <p>Réservez votre créneau via Planity. Arrivez 10 minutes en avance. Un acompte peut être demandé selon le projet.</p>
+        <button class="btn" id="planity-cta">Réserver sur Planity</button>
+        <p class="muted">Adresse : Vertou • Horaires : Mar-Sam 10:00-19:00</p>
+      </article>
+    </section>
+
+    <section class="view" data-view="salon">
+      <article class="card">
+        <h2>Le Salon</h2>
+        <p>La Maison du Tatouage propose une approche sur-mesure, une hygiène irréprochable et une ambiance artistique.</p>
+        <ul>
+          <li>Créativité & écoute client</li>
+          <li>Matériel stérile à usage contrôlé</li>
+          <li>Accès facile + parking à proximité</li>
+        </ul>
+        <details><summary>FAQ : Le tatouage est-il douloureux ?</summary><p>La sensation varie selon la zone et la tolérance. Nous vous guidons tout au long de la séance.</p></details>
+        <details><summary>FAQ : Acceptez-vous les mineurs ?</summary><p>Uniquement selon réglementation en vigueur et consentement légal.</p></details>
+      </article>
+    </section>
+
+    <section class="view" data-view="tatouage">
+      <article class="card">
+        <h2>Tatouage</h2>
+        <p>Styles : Noir & gris, couleur, fine line, lettrage.</p>
+        <div id="portfolio-filters" class="chips" aria-label="Filtres portfolio"></div>
+        <div id="portfolio-grid" class="grid"></div>
+      </article>
+    </section>
+
+    <section class="view" data-view="piercing">
+      <article class="card">
+        <h2>Piercing</h2>
+        <p>Prestations avec titane implant grade, contrôle sécurité et suivi cicatrisation.</p>
+        <ul>
+          <li>Zones : lobe, helix, tragus, nostril, septum</li>
+          <li>Prix : à partir de 35€</li>
+          <li>Conseils après-soin personnalisés</li>
+        </ul>
+        <button class="btn" data-route="rdv">Réserver</button>
+      </article>
+    </section>
+
+    <section class="view" data-view="fidelite">
+      <article class="card two-col">
+        <div>
+          <h2>Mes tatouages</h2>
+          <form id="tattoo-form" class="stack">
+            <input name="title" placeholder="Nom du projet" required />
+            <input name="artist" placeholder="Artiste" required />
+            <input name="zone" placeholder="Zone du corps" required />
+            <input name="date" type="date" required />
+            <input name="file" type="file" accept="image/*" required />
+            <textarea name="note" placeholder="Note / suivi"></textarea>
+            <button class="btn" type="submit">Ajouter une photo</button>
+          </form>
+          <p class="muted">Formats autorisés : JPG/PNG/WEBP • max 6 Mo (compression auto).</p>
+        </div>
+        <div>
+          <h3>Historique</h3>
+          <div id="tattoos-empty" class="muted">Aucun tatouage ajouté pour le moment.</div>
+          <div id="tattoos-list" class="stack"></div>
+          <p id="loyalty" class="badge"></p>
+          <button class="btn btn-ghost" id="request-touchup">Demander une retouche / suivi</button>
+          <p id="touchup-status" class="muted"></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="view" data-view="boutique">
+      <article class="card">
+        <h2>Boutique</h2>
+        <div id="shop-grid" class="grid"></div>
+        <h3>Panier</h3>
+        <div class="stack">
+          <input id="promo" placeholder="Code promo (ex: FLASH10)" />
+          <button class="btn btn-ghost" id="apply-promo">Appliquer</button>
+        </div>
+        <p id="promo-status" class="muted"></p>
+        <div id="cart-empty" class="muted">Votre panier est vide. Découvrez nos nouveautés.</div>
+        <ul id="cart-list"></ul>
+        <label>Mode de livraison
+          <select id="delivery-mode">
+            <option value="collect">Click & Collect (salon)</option>
+            <option value="shipping">Livraison</option>
+          </select>
+        </label>
+        <p id="cart-total"></p>
+        <button class="btn" id="checkout">Payer en sécurité (simulation Stripe)</button>
+        <p id="checkout-status" class="muted"></p>
+      </article>
+    </section>
+
+    <section class="view" data-view="compte">
+      <article class="card two-col">
+        <div>
+          <h2>Compte client</h2>
+          <form id="register-form" class="stack">
+            <input name="name" placeholder="Nom" required />
+            <input name="email" type="email" placeholder="Email" required />
+            <input name="password" type="password" minlength="8" placeholder="Mot de passe (8+)">
+            <input name="phone" placeholder="Téléphone (optionnel)">
+            <label><input name="consent" type="checkbox" required> J’accepte la politique RGPD.</label>
+            <button class="btn" type="submit">Créer / Mettre à jour mon compte</button>
+          </form>
+          <p id="account-status" class="muted"></p>
+        </div>
+        <div>
+          <h3>RGPD</h3>
+          <button class="btn btn-ghost" id="export-data">Exporter mes données</button>
+          <button class="btn btn-ghost danger" id="delete-data">Supprimer mon compte</button>
+          <pre id="export-preview" class="preview"></pre>
+        </div>
+      </article>
+    </section>
+
+    <section class="view" data-view="admin">
+      <article class="card">
+        <h2>Admin salon</h2>
+        <p class="muted">Validation des photos avant publication.</p>
+        <input id="admin-key" placeholder="Clé admin" />
+        <button class="btn btn-ghost" id="admin-login">Se connecter</button>
+        <p id="admin-status" class="muted"></p>
+        <h3>File de modération</h3>
+        <div id="moderation-empty" class="muted">Aucune image en attente.</div>
+        <div id="moderation-list" class="stack"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">© La Maison du Tatouage — Vertou</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
